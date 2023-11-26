@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TCP/IP 5 Layer Model</title>
+  <style>
+    body {
+      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0, 200, 255, 0.684) 100%);
+      align-items: center;
+    }
+    .layer-container {
+      width: 200px;
+      height: 70px;
+      border-radius: 5px;
+      margin: 5px auto;
+      margin-top:40px;
+      margin-bottom: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 1.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .physical {
+      background-color: #ff9999; /* Light Red */
+    }
+    
+    .data-link {
+      background-color: #99ccff; /* Light Blue */
+    }
+
+    .network {
+      background-color: #99ff99; /* Light Green */
+    }
+
+    .transport {
+      background-color: #ffff99; /* Light Yellow */
+    }
+
+    .application {
+      background-color: #ffcc99; /* Light Orange */
+    }
+
+    .layer-container:hover .layer-details {
+      display: block;
+      opacity: 1;
+     
+    }
+
+    .layer-details {
+      display: none;
+      position: absolute;
+      padding: 5px;
+      font-size:18px ;
+      background-color: #7e9a9a;
+      border-radius: 5px;
+      margin-top: 10px;
+      z-index: 1;
+      line-height: 1.5em;
+      transition: opacity 0.3s
+    }
+    h2,p{
+        color:rgb(255, 255, 255)
+    }
+    /* Starting Logo Animation */
+    @keyframes logoAnimation {
+      0% { opacity: 0; transform: translateY(-100px); }
+      100% { opacity: 1; transform: translateY(100); }
+    }
+
+    .logo {
+      opacity: 0;
+      animation: logoAnimation 1s ease-in-out forwards;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <h1>TCP/IP 5 Layer Model</h1>
+  </div>
+  <div class="layer-container application">
+    <div class="loading"></div> <!-- Loading animation -->
+    1. Application Layer
+    <div class="layer-details">
+      <h2>Application Layer</h2>
+      <p>Protocols used: HTTP, FTP, SMTP</p>
+      <p>Responsibilities: Supports application services for end-user applications</p>
+    </div>
+  </div>
+  <div class="layer-container transport">
+    <div class="loading"></div> <!-- Loading animation -->
+    2. Transport Layer
+    <div class="layer-details">
+      <h2>Transport Layer</h2>
+      <p>Protocols used: TCP, UDP</p>
+      <p>Responsibilities: Provides reliable or unreliable data transport between devices</p>
+    </div>
+  </div>
+  <div class="layer-container network">
+    <div class="loading"></div> <!-- Loading animation -->
+    3. Network Layer
+    <div class="layer-details">
+      <h2>Network Layer</h2>
+      <p>Protocols used: IP, ICMP, ARP</p>
+      <p>Responsibilities: Routes data through different networks using IP addresses</p>
+    </div>
+  </div>
+  <div class="layer-container data-link">
+    <div class="loading"></div> <!-- Loading animation -->
+    4. Data Link Layer
+    <div class="layer-details">
+      <h2>Data Link Layer</h2>
+      <p>Protocols used: Ethernet, PPP, HDLC</p>
+      <p>Responsibilities: Provides reliable data transfer over the physical layer</p>
+    </div>
+  </div>
+  <div class="layer-container physical">
+    <div class="loading"></div> <!-- Loading animation -->
+    5. Physical Layer
+    <div class="layer-details">
+      <h2>Physical Layer</h2>
+      <p>Protocols used: Ethernet, Wi-Fi, Bluetooth</p>
+      <p>Responsibilities: Handles the physical connection between devices</p>
+    </div>
+  </div>
+
+  <script>
+    // Hide the logo initially and show it with animation after the page loads
+    window.addEventListener('load', function() {
+      var logo = document.querySelector('.logo');
+      logo.style.opacity = '1';
+    });
+  </script>
+</body>
+<p style="text-align: center;">
+    <a href="https://www.w3schools.com/" style="color: darkblue;">Feel free to change the code!! @github</a>
+  </p>
+  
+</html>
