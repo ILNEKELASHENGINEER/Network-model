@@ -63,7 +63,6 @@
     h2,p{
         color:rgb(255, 255, 255)
     }
-    /* Starting Logo Animation */
     @keyframes logoAnimation {
       0% { opacity: 0; transform: translateY(-100px); }
       100% { opacity: 1; transform: translateY(100); }
@@ -84,7 +83,7 @@
     <h1>TCP/IP 5 Layer Model</h1>
   </div>
   <div class="layer-container application">
-    <div class="loading"></div> <!-- Loading animation -->
+    <div class="loading"></div>
     1. Application Layer
     <div class="layer-details">
       <h2>Application Layer</h2>
@@ -93,7 +92,7 @@
     </div>
   </div>
   <div class="layer-container transport">
-    <div class="loading"></div> <!-- Loading animation -->
+    <div class="loading"></div>
     2. Transport Layer
     <div class="layer-details">
       <h2>Transport Layer</h2>
@@ -102,7 +101,7 @@
     </div>
   </div>
   <div class="layer-container network">
-    <div class="loading"></div> <!-- Loading animation -->
+    <div class="loading"></div>
     3. Network Layer
     <div class="layer-details">
       <h2>Network Layer</h2>
@@ -111,7 +110,7 @@
     </div>
   </div>
   <div class="layer-container data-link">
-    <div class="loading"></div> <!-- Loading animation -->
+    <div class="loading"></div>
     4. Data Link Layer
     <div class="layer-details">
       <h2>Data Link Layer</h2>
@@ -120,7 +119,7 @@
     </div>
   </div>
   <div class="layer-container physical">
-    <div class="loading"></div> <!-- Loading animation -->
+    <div class="loading"></div>
     5. Physical Layer
     <div class="layer-details">
       <h2>Physical Layer</h2>
@@ -130,7 +129,6 @@
   </div>
 
   <script>
-    // Hide the logo initially and show it with animation after the page loads
     window.addEventListener('load', function() {
       var logo = document.querySelector('.logo');
       logo.style.opacity = '1';
