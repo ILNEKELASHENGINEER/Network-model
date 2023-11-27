@@ -1,144 +1,191 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>TCP/IP 5 Layer Model</title>
-  <style>
-    body {
-      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0, 200, 255, 0.684) 100%);
-      align-items: center;
-    }
-    .layer-container {
-      width: 200px;
-      height: 70px;
-      border-radius: 5px;
-      margin: 5px auto;
-      margin-top:40px;
-      margin-bottom: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: 1.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Load Balancer Simulation</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        /* background-color: #f4f4f4; */
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          180deg,
+          rgba(2, 0, 36, 1) 10%,
+          rgba(19, 121, 9, 1) 81%,
+          rgba(0, 212, 255, 1) 100%
+        );
+      }
 
-    .physical {
-      background-color: #ff9999; /* Light Red */
-    }
-    
-    .data-link {
-      background-color: #99ccff; /* Light Blue */
-    }
+      .load-balancer {
+        width: 400px;
+        height: 200px;
+        /* background-color: #f2f2f2; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        /* margin-top: 100px; */
+      }
 
-    .network {
-      background-color: #99ff99; /* Light Green */
-    }
+      .server {
+        width: 50px;
+        height: 50px;
+        justify-content: space-around;
+        background-color: #2196f3;
+        border-radius: 39%;
+        position: relative;
+        animation: rotate 0.6s infinite linear;
+      }
 
-    .transport {
-      background-color: #ffff99; /* Light Yellow */
-    }
+      .request {
+        width: 13px;
+        height: 13px;
+        background-color: #ff5722;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: moveRequest 0.5s infinite linear;
+      }
+      .server-name {
+        justify-content: space-around;
+        display: flex;
+        position: relative;
+        align-items: center;
+        margin-top: -70px;
+        color: blanchedalmond;
+      }
 
-    .application {
-      background-color: #ffcc99; /* Light Orange */
-    }
+      @keyframes moveRequest {
+        0% {
+          transform: translate(-50%, -50%);
+        }
+        100% {
+          transform: translate(-50%, -50%);
+        }
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
 
-    .layer-container:hover .layer-details {
-      display: block;
-      opacity: 1;
-     
-    }
+      p {
+        text-align: center;
+        font-size: large;
+        font-weight: bold;
+      }
+      .name {
+        justify-content: space-around;
+        display: flex;
+        color: aquamarine;
+        margin-bottom: -40px;
+        font-size: large;
+        font-weight: 900;
+        font-style: inherit;
+      }
+      @keyframes logoAnimation {
+        0% {
+          opacity: 0;
+          transform: translateY(-100px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(100);
+        }
+      }
 
-    .layer-details {
-      display: none;
-      position: absolute;
-      padding: 5px;
-      font-size:18px ;
-      background-color: #7e9a9a;
-      border-radius: 5px;
-      margin-top: 10px;
-      z-index: 1;
-      line-height: 1.5em;
-      transition: opacity 0.3s
-    }
-    h2,p{
-        color:rgb(255, 255, 255)
-    }
-    /* Starting Logo Animation */
-    @keyframes logoAnimation {
-      0% { opacity: 0; transform: translateY(-100px); }
-      100% { opacity: 1; transform: translateY(100); }
-    }
+      .logo {
+        opacity: 0;
+        animation: logoAnimation 1s ease-in-out forwards;
+        justify-content: space-around;
+        display: flex;
+        flex-direction: column;
+        color: aquamarine;
+        margin-bottom: -10px;
+        font-size: large;
+        font-weight: 900;
+        font-style: inherit;
+        margin-right: 10px;
+        margin-top: -20px;
+      }
+      .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -15px;
+  color: #fff;
+  padding: 0 20px;
+}
 
-    .logo {
-      opacity: 0;
-      animation: logoAnimation 1s ease-in-out forwards;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-  </style>
-</head>
-<body>
-  <div class="logo">
-    <h1>TCP/IP 5 Layer Model</h1>
-  </div>
-  <div class="layer-container application">
-    <div class="loading"></div> <!-- Loading animation -->
-    1. Application Layer
-    <div class="layer-details">
-      <h2>Application Layer</h2>
-      <p>Protocols used: HTTP, FTP, SMTP</p>
-      <p>Responsibilities: Supports application services for end-user applications</p>
+.details p {
+  margin-bottom: 10px;
+  text-align: left;
+  font-size:medium;
+  font-weight: lighter;
+}
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <h1>Server Load-Balancer Model</h1>
     </div>
-  </div>
-  <div class="layer-container transport">
-    <div class="loading"></div> <!-- Loading animation -->
-    2. Transport Layer
-    <div class="layer-details">
-      <h2>Transport Layer</h2>
-      <p>Protocols used: TCP, UDP</p>
-      <p>Responsibilities: Provides reliable or unreliable data transport between devices</p>
+    <div>
+      <div class="name">Load-Balancer</div>
+      <div class="load-balancer">
+        <div class="server"></div>
+        <div class="server"></div>
+        <div class="server"></div>
+        <div class="server"></div>
+        <div class="server"></div>
+      </div>
+      <div class="server-name">
+        <p>server 1</p>
+        <p>server 2</p>
+        <p>server 3</p>
+        <p>server 4</p>
+        <p>server 5</p>
+      </div>
     </div>
-  </div>
-  <div class="layer-container network">
-    <div class="loading"></div> <!-- Loading animation -->
-    3. Network Layer
-    <div class="layer-details">
-      <h2>Network Layer</h2>
-      <p>Protocols used: IP, ICMP, ARP</p>
-      <p>Responsibilities: Routes data through different networks using IP addresses</p>
-    </div>
-  </div>
-  <div class="layer-container data-link">
-    <div class="loading"></div> <!-- Loading animation -->
-    4. Data Link Layer
-    <div class="layer-details">
-      <h2>Data Link Layer</h2>
-      <p>Protocols used: Ethernet, PPP, HDLC</p>
-      <p>Responsibilities: Provides reliable data transfer over the physical layer</p>
-    </div>
-  </div>
-  <div class="layer-container physical">
-    <div class="loading"></div> <!-- Loading animation -->
-    5. Physical Layer
-    <div class="layer-details">
-      <h2>Physical Layer</h2>
-      <p>Protocols used: Ethernet, Wi-Fi, Bluetooth</p>
-      <p>Responsibilities: Handles the physical connection between devices</p>
-    </div>
-  </div>
+    <script>
+        const servers = document.querySelectorAll('.server');
+let currentServerIndex = 0;
 
-  <script>
-    // Hide the logo initially and show it with animation after the page loads
-    window.addEventListener('load', function() {
-      var logo = document.querySelector('.logo');
-      logo.style.opacity = '1';
-    });
-  </script>
-</body>
-<p style="text-align: center;">
-    <a href="https://github.com/ILNEKELASHENGINEER/Network-model" style="color: darkblue;">Feel free to change the code!! @github</a>
-  </p>
-  <p style="text-align: center; color: black;">Random thoughts @NEKELASH-ENGINEER</p>
+setInterval(() => {
+    const request = document.createElement('div');
+    request.classList.add('request');
+
+    servers[currentServerIndex].appendChild(request);
+
+    currentServerIndex = (currentServerIndex + 1) % servers.length;
+
+    setTimeout(() => {
+        request.remove();
+    }, 2000);
+}, 3000);
+    </script>
+    <div class="details">
+        <p style="color: yellow; font-weight: bold; margin-bottom: -10px;">Explanation of Load Balancer:</p>
+        <p>The load balancer is a networking device that evenly distributes incoming network traffic across multiple servers to optimize resource utilization, maximize throughput, and minimize response time. It acts as a virtual traffic manager, ensuring that each server in the cluster receives a fair share of requests.</p>
+        <p>In this animation, the servers are represented by the blue circles below the "Load-Balancer" text. The animation shows the servers rotating continuously, indicating their availability and readiness to handle requests.</p>
+        <p>The red dots inside the servers simulate incoming requests from clients. As the load balancer receives incoming requests, it analyzes various factors such as server health, current server load, and predefined algorithms to determine which server should handle each request. The load balancer then forwards each request to an appropriate server. This helps prevent any single server from becoming overwhelmed with traffic, ensuring high availability and optimal performance.</p>
+        <p>By distributing the load across multiple servers, the load balancer improves overall system reliability and reduces the risk of server failures or downtime. It also facilitates scalability, as new servers can be added to the cluster easily without disrupting the overall system.</p>
+        <p>The load balancing process involves receiving client requests, analyzing various factors, and forwarding each request to an appropriate server. This ensures efficient resource utilization and enables seamless handling of a large number of concurrent users or high traffic loads.</p>
+        <p style="color: black; font-weight: bold;">Overall, the load balancer plays a crucial role in maintaining the stability, performance, and availability of web applications and services by efficiently managing and distributing network traffic across multiple servers.</p>
+        <p style="text-align: center; font-weight: bolder;">
+            <a href="https://github.com/ILNEKELASHENGINEER/Network-model" style="color: darkblue;">Feel free to change the code!! @github</a>
+          </p>
+          <p style="font-weight: bolder; font-size: larger; color: #03464c;">Random thoughts from NEKELASH-ENGINEER</p>
+    </div>
+
+  </body>
 </html>
